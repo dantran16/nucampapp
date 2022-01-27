@@ -13,21 +13,27 @@ import { createStackNavigator } from "react-navigation-stack";
 import { createDrawerNavigator, DrawerItems } from "react-navigation-drawer";
 import { createAppContainer } from "react-navigation";
 import SafeAreaView from "react-native-safe-area-view";
-import { connect } from 'react-redux'
-import { fetchCampsites, fetchComments, fetchPromotions, fetchPartners } from "../redux/ActionCreators";
+import { connect } from "react-redux";
+import {
+	fetchCampsites,
+	fetchComments,
+	fetchPromotions,
+	fetchPartners,
+} from "../redux/ActionCreators";
 
 import Home from "./HomeComponent";
 import Directory from "./DirectoryComponent";
 import CampsiteInfo from "./CampsiteInfoComponent";
 import About from "./AboutComponent";
 import Contact from "./ContactComponent";
+import Reservation from "./ReservationComponent";
 
 const mapDispatchToProps = {
-  fetchCampsites,
-  fetchComments,
-  fetchPromotions,
-  fetchPartners
-}
+	fetchCampsites,
+	fetchComments,
+	fetchPromotions,
+	fetchPartners,
+};
 
 const DirectoryNavigator = createStackNavigator(
 	{
@@ -135,6 +141,29 @@ const ContactNavigator = createStackNavigator(
 	}
 );
 
+const ReservationNavigator = createStackNavigator(
+  {
+    Reservation: { screen: Reservation }
+  },
+  {
+    defaultNavigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: '#5636DD'
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        color: '#fff'
+      },
+      headerLeft: <Icon
+        name='tree'
+        type='font-awesome'
+        iconStyle={styles.stackIcon}
+        onPress={() => navigation.toggleDrawer()}
+      />
+    })
+  }
+)
+
 const CustomDrawerContentComponent = (props) => (
 	<ScrollView>
 		<SafeAreaView
@@ -174,7 +203,16 @@ const MainNavigator = createDrawerNavigator(
 					<Icon name="list" type="font-awesome" size={24} color={tintColor} />
 				),
 			},
-		},
+    },
+    Reservation: {
+			screen: ReservationNavigator,
+      navigationOptions: {
+        drawerLabel: 'Reserve Campsite',
+				drawerIcon: ({ tintColor }) => (
+					<Icon name="tree" type="font-awesome" size={24} color={tintColor} />
+				),
+			},
+    },
 		About: {
 			screen: AboutNavigator,
 			navigationOptions: {
@@ -212,12 +250,12 @@ const MainNavigator = createDrawerNavigator(
 const AppNavigator = createAppContainer(MainNavigator);
 
 class Main extends Component {
-  componentDidMount() {
-    this.props.fetchCampsites();
-    this.props.fetchComments();
-    this.props.fetchPromotions();
-    this.props.fetchPartners();
-  }
+	componentDidMount() {
+		this.props.fetchCampsites();
+		this.props.fetchComments();
+		this.props.fetchPromotions();
+		this.props.fetchPartners();
+	}
 
 	render() {
 		return (
