@@ -33,19 +33,19 @@ class Directory extends Component {
 					imageSrc={{ uri: baseUrl + item.image }}
 				/>
 			);
-    };
-    
-    if (this.props.campsites.isLoading) {
-      return <Loading />
-    }
+		};
 
-    if (this.props.campsites.errMess) {
-      return (
-        <View>
-          <Text>{ this.props.campsites.errMess}</Text>
-        </View>
-      )
-    }
+		if (this.props.campsites.isLoading) {
+			return <Loading />;
+		}
+
+		if (this.props.campsites.errMess) {
+			return (
+				<View>
+					<Text>{this.props.campsites.errMess}</Text>
+				</View>
+			);
+		}
 
 		return (
 			<FlatList

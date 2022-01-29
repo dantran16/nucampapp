@@ -14,20 +14,20 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const RenderItem = props => {
-  const { item } = props
+const RenderItem = (props) => {
+	const { item } = props;
 
-  if (props.isLoading) {
-    return <Loading />
-  }
+	if (props.isLoading) {
+		return <Loading />;
+	}
 
-  if (props.errMess) {
-    return (
-      <View>
-        <Text>{ props.errMess }</Text>
-      </View>
-    )
-  }
+	if (props.errMess) {
+		return (
+			<View>
+				<Text>{props.errMess}</Text>
+			</View>
+		);
+	}
 
 	if (item) {
 		return (
@@ -53,8 +53,8 @@ class Home extends Component {
 							(campsite) => campsite.featured
 						)[0]
 					}
-          isLoading={this.props.campsites.isLoading}
-          errMess={this.props.campsites.errMess}
+					isLoading={this.props.campsites.isLoading}
+					errMess={this.props.campsites.errMess}
 				/>
 				<RenderItem
 					item={
@@ -62,8 +62,8 @@ class Home extends Component {
 							(campsite) => campsite.featured
 						)[0]
 					}
-          isLoading={this.props.promotions.isLoading}
-          errMess={this.props.promotions.errMess}
+					isLoading={this.props.promotions.isLoading}
+					errMess={this.props.promotions.errMess}
 				/>
 				<RenderItem
 					item={
@@ -71,8 +71,8 @@ class Home extends Component {
 							(campsite) => campsite.featured
 						)[0]
 					}
-          isLoading={this.props.partners.isLoading}
-          errMess={this.props.partners.errMess}
+					isLoading={this.props.partners.isLoading}
+					errMess={this.props.partners.errMess}
 				/>
 			</ScrollView>
 		);
