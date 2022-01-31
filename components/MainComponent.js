@@ -27,7 +27,7 @@ import CampsiteInfo from "./CampsiteInfoComponent";
 import About from "./AboutComponent";
 import Contact from "./ContactComponent";
 import Reservation from "./ReservationComponent";
-import Favorites from './FavoritesComponent'
+import Favorites from "./FavoritesComponent";
 
 const mapDispatchToProps = {
 	fetchCampsites,
@@ -240,8 +240,8 @@ const MainNavigator = createDrawerNavigator(
 					<Icon name="tree" type="font-awesome" size={24} color={tintColor} />
 				),
 			},
-    },
-    Favorites: {
+		},
+		Favorites: {
 			screen: FavoritesNavigator,
 			navigationOptions: {
 				drawerLabel: "My Favorites",
