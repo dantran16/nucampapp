@@ -35,8 +35,8 @@ const RenderCampsite = (props) => {
 
 	const view = React.createRef();
 
-  const recognizeDrag = ({ dx }) => dx < -200;
-  const recognizeComment = ({dx}) => dx > 200
+	const recognizeDrag = ({ dx }) => dx < -200;
+	const recognizeComment = ({ dx }) => dx > 200;
 
 	const panResponder = PanResponder.create({
 		onStartShouldSetPanResponder: () => true,
@@ -69,10 +69,10 @@ const RenderCampsite = (props) => {
 					],
 					{ cancelable: false }
 				);
-      }
-      if (recognizeComment(gestureState)) {
-        props.onShowModal()
-      }
+			}
+			if (recognizeComment(gestureState)) {
+				props.onShowModal();
+			}
 			return true;
 		},
 	});
@@ -241,7 +241,7 @@ class CampsiteInfo extends Component {
 							onChangeText={(text) => this.setState({ text: text })}
 							value={this.state.text}
 						/>
-						<View>
+						<View style={{ margin: 10 }}>
 							<Button
 								title="Submit"
 								color="#5637DD"
