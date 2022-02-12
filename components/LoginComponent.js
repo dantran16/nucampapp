@@ -192,7 +192,22 @@ class RegisterTab extends Component {
 				console.log("Could not delete user info", error)
 			);
 		}
-	}
+  }
+  
+  getImageFromGallery = async () => {
+    const cameraRollPermission =
+      await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (cameraRollPermission.granted) {
+      const capturedImage = await ImagePicker.launchImageLibraryAsync({
+				allowsEditing: true,
+				aspect: [1, 1],
+      })
+      if (!capturedImage.cancelled) {
+				console.log(capturedImage);
+				this.processImage(capturedImage.uri)
+			}
+    }
+  }
 
 	render() {
 		return (
@@ -204,7 +219,8 @@ class RegisterTab extends Component {
 							loadingIndicatorSource={require("./images/logo.png")}
 							style={styles.image}
 						/>
-						<Button title="Camera" onPress={this.getImageFromCamera} />
+            <Button title="Camera" onPress={this.getImageFromCamera} />
+            <Button title="Gallery" onPress={this.getImageFromGallery} />
 					</View>
 					<Input
 						placeholder="Username"
